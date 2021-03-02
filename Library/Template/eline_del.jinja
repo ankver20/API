@@ -1,0 +1,22 @@
+{% for i in range(0,component.n) -%}
+
+{% set vlan =  component.vlan + i -%}
+{% set evpn_id = component.evpn_id + i -%}
+{% set rd = component.rd + i -%}
+{% set rt = component.rt + i %}
+
+no interface {{ component.interface }}.{{ vlan }}
+
+evpn
+ no evi {{ evpn_id }}
+
+l2vpn
+ no xconnect group {{ component.xc_group }}{{vlan}}
+
+{% if component.CFM -%}
+ethernet cfm
+ domain COLT-1 level 1 id null
+  no service {{ component.xc_group }}{{vlan}} xconnect group {{ component.xc_group }}{{vlan}} p2p {{ component.p2p_xc_name }}{{vlan}} id icc-based {{ component.mepid}}{{vlan}}
+{% endif -%}
+
+{% endfor %}

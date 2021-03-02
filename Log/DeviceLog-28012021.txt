@@ -1,0 +1,112 @@
+
+**netmiko ssh connection AR1
+
+**netmiko ssh connection AR6
+RP/0/RP0/CPU0:ar1.BLB#show l2vpn xconnect interface Gi0/0/0/11.110
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox110
+           ar1_ar6_xtox110
+                      UP   Gi0/0/0/11.110         UP       EVPN 2196,2110,10.91.126.116 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar1.BLB#show l2vpn xconnect interface Gi0/0/0/11.111
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox111
+           ar1_ar6_xtox111
+                      UP   Gi0/0/0/11.111         UP       EVPN 2197,2111,10.91.126.116 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar1.BLB#show l2vpn xconnect interface Gi0/0/0/11.112
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox112
+           ar1_ar6_xtox112
+                      UP   Gi0/0/0/11.112         UP       EVPN 2198,2112,10.91.126.116 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar1.BLB#show l2vpn xconnect interface Gi0/0/0/11.113
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox113
+           ar1_ar6_xtox113
+                      UP   Gi0/0/0/11.113         UP       EVPN 2199,2113,10.91.126.116 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar6.BLB#show l2vpn xconnect interface Gi0/0/0/16.110
+Thu Jan 28 20:27:47.697 UTC
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox110
+           ar1_ar6_xtox110
+                      UP   Gi0/0/0/16.110         UP       EVPN 2196,1110,10.91.126.111 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar6.BLB#show l2vpn xconnect interface Gi0/0/0/16.111
+Thu Jan 28 20:27:50.568 UTC
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox111
+           ar1_ar6_xtox111
+                      UP   Gi0/0/0/16.111         UP       EVPN 2197,1111,10.91.126.111 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar6.BLB#show l2vpn xconnect interface Gi0/0/0/16.112
+Thu Jan 28 20:27:53.046 UTC
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox112
+           ar1_ar6_xtox112
+                      UP   Gi0/0/0/16.112         UP       EVPN 2198,1112,10.91.126.111 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+
+RP/0/RP0/CPU0:ar6.BLB#show l2vpn xconnect interface Gi0/0/0/16.113
+Thu Jan 28 20:27:55.520 UTC
+Legend: ST = State, UP = Up, DN = Down, AD = Admin Down, UR = Unresolved,
+        SB = Standby, SR = Standby Ready, (PP) = Partially Programmed
+
+XConnect                   Segment 1                       Segment 2                
+Group      Name       ST   Description            ST       Description            ST    
+------------------------   -----------------------------   -----------------------------
+ar1_ar6_xtox113
+           ar1_ar6_xtox113
+                      UP   Gi0/0/0/16.113         UP       EVPN 2199,1113,10.91.126.111 
+                                                                                  UP    
+----------------------------------------------------------------------------------------
+

@@ -1,0 +1,79 @@
+{% for i in range(0,component.n) -%}
+
+{% set vlan =  component.vlan + i -%}
+{% set evpn_id = component.evpn_id + i -%}
+{% set rd = component.rd + i -%}
+{% set rt = component.rt + i -%}
+
+interface {{ component.interface }}
+ description {{ component.Description }}
+ mtu {{ component.mtu }}
+ service-policy output egr account user-defined 26
+ lldp
+  receive disable
+  transmit disable
+ !
+ negotiation auto
+ load-interval 30
+!
+
+
+interface {{ component.interface }}.{{ vlan }} l2transport
+ {% if component.service_type == 'P' -%}
+ encapsulation default
+ {% elif component.service_type == 'F' -%}
+ encapsulation dot1q {{ vlan }}
+ {% elif component.service_type == 'X' -%}
+ encapsulation dot1q {{ vlan }}
+ rewrite ingress tag pop 1 symmetric
+ {% endif -%}
+ service-policy input NNI-QOS-INGRESS
+ service-policy output NNI-QOS-EGRESS
+ exit
+
+evpn
+ evi {{ evpn_id }}
+  bgp
+   rd 8220001:{{ rd }}
+   route-target import 8220001:{{ rt }}
+   route-target export 8220001:{{ rt }}
+   exit
+
+l2vpn
+ xconnect group {{ component.xc_group }}{{vlan}}
+  p2p {{ component.p2p_xc_name }}{{vlan}}
+   interface {{ component.interface }}.{{ vlan }}
+   neighbor evpn evi {{ evpn_id }} target {{ component.rmte_attc_ckt_id }}{{vlan}} source {{ component.src_attc_ckt_id }}{{vlan}}
+   exit
+   exit
+
+{% if component.CFM -%}
+ethernet cfm
+    domain COLT-1 level 1 id null
+    service {{ component.xc_group }}{{vlan}} xconnect group {{ component.xc_group }}{{vlan}} p2p {{ component.p2p_xc_name }}{{vlan}} id icc-based {{ component.mepid}}{{vlan}}
+    continuity-check interval 1s
+    mep crosscheck
+    mep-id {{ component.remote_mep }}
+    log continuity-check errors
+    log continuity-check mep changes
+    log crosscheck errors
+    exit
+    exit
+    exit
+    !
+
+interface {{ component.interface }}.{{ vlan }} l2transport
+    ethernet cfm
+    mep domain COLT-1 service {{ component.xc_group }}{{vlan}} mep-id {{ component.local_mep }}
+    cos 2
+    {% if component.SLM -%}
+    sla operation profile DMM2 target mep-id {{ component.remote_mep }}
+    sla operation profile SLM2 target mep-id {{ component.remote_mep }}
+    {% endif -%}
+    exit
+    exit
+    exit
+    !
+{% endif -%}
+
+{% endfor -%}

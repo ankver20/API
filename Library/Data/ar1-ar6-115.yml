@@ -1,0 +1,59 @@
+# from where service is started in lab
+# service b/w AR1 and AR6
+# vlan start 115
+# evpn_id start 2180
+# rd/rt start 2180
+# l2 service name ar1_ar6_xtoxvlan
+
+---
+data:
+  -
+     HOSTNAME: AR1
+     LOGIN:
+         ip: 10.91.126.111
+         username: 'averma2'
+         password: 'Ank#2020'
+         device_type: "cisco_xr"
+     interface: Gi0/0/0/11
+     Description: "Ankit test AR1 AR6"
+     mtu: 9100
+     service_type: 'X'    # P/F/X
+     n: 4   # total number of service to be created
+     vlan: 110
+     evpn_id: 2180
+     rd: 2180    # 8220001:{{ rd }}
+     rt: 2180    # 8220001:{{ rt }}
+     xc_group: ar1_ar6_xtox   # {{ component.xc_group }}{{vlan}}
+     p2p_xc_name: ar1_ar6_xtox   # {{ component.xc_group }}{{vlan}}
+     src_attc_ckt_id: 1    # source {{ component.src_attc_ckt_id }}{{vlan}}
+     rmte_attc_ckt_id: 2   # source {{ component.rmte_attc_ckt_id }}{{vlan}}
+     CFM: "yes"   # if required= yes, not required= blank
+     local_mep: 1
+     remote_mep: 2
+     mepid: "LE XXX-297"    # {{ component.mepid}}{{vlan}} 6 digit required. Enter 3 here 3 will be taken from template with vlan name
+     SLM: ""   # if required= yes, not required= blank
+  -
+     HOSTNAME: AR6
+     LOGIN:
+         ip: 10.91.126.116
+         username: 'averma2'
+         password: 'Ank#2020'
+         device_type: "cisco_xr"
+     interface: Gi0/0/0/16
+     Description: "Ankit test AR1 AR6"
+     mtu: 9100
+     service_type: 'X'    # P/F/X
+     n: 4   # total number of service to be created
+     vlan: 110
+     evpn_id: 2180
+     rd: 2180    # 8220001:{{ rd }}
+     rt: 2180    # 8220001:{{ rt }}
+     xc_group: ar1_ar6_xtox   # {{ component.xc_group }}{{vlan}}
+     p2p_xc_name: ar1_ar6_xtox   # {{ component.xc_group }}{{vlan}}
+     src_attc_ckt_id: 2    # source {{ component.src_attc_ckt_id }}{{vlan}}
+     rmte_attc_ckt_id: 1   # source {{ component.rmte_attc_ckt_id }}{{vlan}}
+     CFM: "yes"   # if required= yes, not required= blank
+     local_mep: 2
+     remote_mep: 1
+     mepid: "LE XXX-297"    # {{ component.mepid}}{{vlan}} 6 digit required. Enter 3 here 3 will be taken from template with vlan name
+     SLM: ""      # if required= yes, not required= blank
