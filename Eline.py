@@ -25,7 +25,15 @@ def ELINE(temp, data):
         VLAN.append(d1['data'][i]['vlan'])
         N.append(d1['data'][i]['n'])    # total number of service to be created
     print(HOSTNAME, LOGIN, INTERFACE, VLAN, N)
+    print('\n\n')
 
+
+    # Push config on the device // hash this code if config push is not required on the device //
+    for i in range(l):
+        Lib.ConfigP(HOSTNAME[i], LOGIN[i])
+
+    
+    # This is to execute show command // hash this code if show command not required //
     # netmiko ssh connection//ssh to all devices
     net_ssh=[]
     for i in range(l):
@@ -50,5 +58,7 @@ def ELINE(temp, data):
                 Lib.deviceLog(log)
                 print(log)
 
-ELINE('eline.jinja','ar1-ar6-115.yml')
-# ELINE('eline_del.jinja','ar1-ar6-115.yml')
+
+
+# ELINE('eline.jinja','ar1-ar6-110.yml')
+ELINE('eline_del.jinja','ar1-ar6-110.yml')

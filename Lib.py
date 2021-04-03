@@ -78,13 +78,19 @@ def TempG(temp, data):
             print(log)
 
 
-def ConfigP(Hostname, dip):
+def ConfigP(HOSTNAME,login_details):
 
-    print ('\nDevice to be configured= ' + dip + '\n')
+    print ('\nDevice to be configured= ' + login_details['ip'] + '\n')
     # push config on device and create log
-    net_connect = ConnectHandler(device_type=deviceType, ip=dip, username=username, password=pw, port=port)
+    # net_connect = ConnectHandler(device_type=deviceType, ip=dip, username=username, password=pw, port=port)
+    net_connect = ConnectHandler(**login_details)
     #output1 = net_connect.send_config_set(config)
-    config_file = 'Config/' + Hostname + '.cfg'
+    
+    # get config file from Config folder
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    print(file_path)
+    config_file = file_path + '\\Config\\' + HOSTNAME + '.cfg'
+
     output1 = net_connect.send_config_from_file(config_file)
     time.sleep(5)
     output2 = net_connect.commit()
@@ -92,7 +98,7 @@ def ConfigP(Hostname, dip):
     output3 = net_connect.exit_config_mode()
     output4 = net_connect.disconnect()
 
-    c = ('\n----'+dip+'----\n'+'\n'+output1+output2+output3+'\n'+'\n---- END ----\n')
+    c = ('\n----'+login_details['ip']+'----\n'+'\n'+output1+output2+output3+'\n'+'\n---- END ----\n')
     print (c)
     deviceLog(c)
     time.sleep(1)
